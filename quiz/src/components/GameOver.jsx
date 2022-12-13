@@ -10,7 +10,7 @@ const GameOver = () => {
   return (
     <div id="gameover">
       <h2>Fim do Quiz!</h2>
-      <p>Acertou: {quizState.score *20}%</p>
+      <p>Acertou: {((quizState.score / quizState.questions.length)*100).toFixed(1)}%</p>
       <p>Você acertou {quizState.score} de {quizState.questions.length} perguntas.</p>
       <img src={WellDone} alt="Fim do jogo" />
       <Button

@@ -12,10 +12,11 @@ const Question = () => {
   const onSelectOption = (option) => {
     dispatch({
       type: "CHECK_ANSWER",
-      payload: {answer: currentQuestion.answer, option}
-    })
+      payload: { answer: currentQuestion.answer, option }
+    });
     console.log(option);
-  }
+    console.log(quizState);
+  };
   return (
     <div id="question">
       <p>Pergunta {quizState.currentQuestion + 1} de {quizState.questions.length}.</p>
@@ -27,9 +28,24 @@ const Question = () => {
             key={option}
             answer={currentQuestion.answer}
             selectOption={() => onSelectOption(option)}
+            hide={quizState.optionToHide === option ? "hide" : null}
           />
         ))}
       </div>
+      {!quizState.answerSelected && !quizState.help && (
+        <>
+          {currentQuestion.tip &&
+            <button onClick={() => dispatch({ type: "SHOW_TIP" })}>Dica</button>
+          }
+          <Button
+            text={"Excluir uma opção"}
+            action={() => dispatch({type: "REMOVE_OPTION"})}
+          />
+        </>
+      )}
+      {!quizState.answerSelected && quizState.help === 'tip' &&
+        <p>{currentQuestion.tip}</p>
+      }
       {quizState.answerSelected && (
         <Button
           text={"Continuar"}
