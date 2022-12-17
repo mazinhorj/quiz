@@ -19,7 +19,7 @@ const Question = () => {
   };
   return (
     <div id="question">
-      <p>Pergunta {quizState.currentQuestion + 1} de {quizState.questions.length}.</p>
+      <p>Pergunta {quizState.currentQuestion + 1} de {quizState.questions.length}.</p> 
       <h2>{currentQuestion.question}</h2>
       <div id="options_container">
         {currentQuestion.options.map((option) => (
@@ -35,7 +35,7 @@ const Question = () => {
       {!quizState.answerSelected && !quizState.help && (
         <>
           {currentQuestion.tip &&
-            <button onClick={() => dispatch({ type: "SHOW_TIP" })}>Dica</button>
+            <Button action={() => dispatch({ type: "SHOW_TIP" })} text={"Dica"} id={"Dica"} />
           }
           <Button
             text={"Excluir uma opção"}
